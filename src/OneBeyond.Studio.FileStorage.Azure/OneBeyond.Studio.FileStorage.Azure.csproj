@@ -4,6 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <nullable>enable</nullable>
     <WarningsAsErrors>nullable</WarningsAsErrors>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,6 +14,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OneBeyond.Studio.FileStorage.Infrastructure\OneBeyond.Studio.FileStorage.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>
