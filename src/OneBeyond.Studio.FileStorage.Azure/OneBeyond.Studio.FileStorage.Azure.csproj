@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Title>FileStorage.Azure</Title>
-    <PackageId>FileStorage.Azure</PackageId>
+    <Title>OneBeyond.Studio.FileStorage.Azure</Title>
+    <PackageId>OneBeyond.Studio.FileStorage.Azure</PackageId>
     <TargetFramework>net7.0</TargetFramework>
     <nullable>enable</nullable>
     <WarningsAsErrors>nullable</WarningsAsErrors>

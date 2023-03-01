@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Title>FileStorage.FileSystem</Title>
-    <PackageId>FileStorage.FileSystem</PackageId>
+    <Title>OneBeyond.Studio.FileStorage.FileSystem</Title>
+    <PackageId>OneBeyond.Studio.FileStorage.FileSystem</PackageId>
     <TargetFramework>net7.0</TargetFramework>
     <nullable>enable</nullable>
     <WarningsAsErrors>nullable</WarningsAsErrors>
