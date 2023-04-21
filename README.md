@@ -4,4 +4,11 @@
   </a>
 </p>
 
-# Coming soon
+# One Beyond File Storage Providers Dependencies
+
+```mermaid
+ graph BT;
+ B1[FileStorage.Infrastructure] --> A1[FileStorage.Domain];
+ C1[FileStorage.FileSystem] --> B1[FileStorage.Infrastructure];
+ D1[FileStorage.Azure] --> B1[FileStorage.Infrastructure];
+```
