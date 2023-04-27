@@ -41,7 +41,7 @@ public abstract class FileStorageBase : IFileStorage
         string fileName,
         Stream fileContent,
         string fileContentType,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken = default)
     {
         if (!_mimeTypeValidationStrategy.IsFileAllowed(fileContent, fileContentType))
         {
@@ -59,7 +59,7 @@ public abstract class FileStorageBase : IFileStorage
         string fileName,
         byte[] fileContent,
         string fileContentType,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken = default)
     {
         if (!_mimeTypeValidationStrategy.IsFileAllowed(fileContent, fileContentType))
         {
@@ -80,7 +80,7 @@ public abstract class FileStorageBase : IFileStorage
         FileRecord fileRecord,
         Stream fileContent,
         string fileContentType,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken = default)
     {
         if (!_mimeTypeValidationStrategy.IsFileAllowed(fileContent, fileContentType))
         {
@@ -100,7 +100,7 @@ public abstract class FileStorageBase : IFileStorage
         FileRecord fileRecord,
         byte[] fileContent,
         string fileContentType,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken = default)
     {
         if (!_mimeTypeValidationStrategy.IsFileAllowed(fileContent, fileContentType))
         {
@@ -137,7 +137,7 @@ public abstract class FileStorageBase : IFileStorage
 
     public Task<Stream> DownloadFileContentAsync(
         FileRecord.ID fileId,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken = default)
     {
         EnsureArg.IsNotDefault(fileId, nameof(fileId));
 
@@ -149,7 +149,7 @@ public abstract class FileStorageBase : IFileStorage
     /// </summary>
     public Task<FileContent> DownloadFileAsync(
         FileRecord.ID fileId,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken = default)
     {
         EnsureArg.IsNotDefault(fileId, nameof(fileId));
 
@@ -158,7 +158,7 @@ public abstract class FileStorageBase : IFileStorage
 
     public async Task<Stream> DownloadFileContentsAsZipAsync(
         IEnumerable<FileRecord> fileRecords,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken = default)
     {
         EnsureArg.IsNotNull(fileRecords, nameof(fileRecords));
 
@@ -215,7 +215,7 @@ public abstract class FileStorageBase : IFileStorage
 
     public Task DeleteFileAsync(
         FileRecord.ID fileId,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken = default)
         => DoDeleteFileContentAsync(fileId, cancellationToken);
 
     /// <summary>
@@ -223,13 +223,13 @@ public abstract class FileStorageBase : IFileStorage
     /// </summary>
     /// <param name="fileId">Id of the file</param>
     /// <returns>Url to the file with read permissions</returns>
-    public Task<Uri> GetFileUrlAsync(FileRecord.ID fileId, CancellationToken cancellationToken)
+    public Task<Uri> GetFileUrlAsync(FileRecord.ID fileId, CancellationToken cancellationToken = default)
         => DoGetFileUrlAsync(fileId, cancellationToken);
 
     /// <summary>
     /// Provide url to download a file directory
     /// </summary>
-    protected abstract Task<Uri> DoGetFileUrlAsync(FileRecord.ID fileId, CancellationToken cancellationToken);
+    protected abstract Task<Uri> DoGetFileUrlAsync(FileRecord.ID fileId, CancellationToken cancellationToken = default);
 
     protected abstract Task DoUploadFileContentAsync(
         FileRecord fileRecord,
