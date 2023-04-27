@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -60,6 +61,15 @@ internal static class Program
         var cloudServiceProvider = ConfigureCloudServices(configuration);
 
         var cloudStorage = cloudServiceProvider.GetRequiredService<ICloudFileStorage>();
+
+        var file = new FileStream("TestFiles\\TestFile.png", FileMode.Open, FileAccess.Read);
+        var tags = new Dictionary<string, string>
+        {
+            { "AuthorName", "Andrii Kaplanovksyi" },
+            { "DateCreated", DateTime.Now.ToString() }
+        };
+
+        await cloudStorage.UploadFileAsync("TestFile.png", file, "image/png", tags, default);
 
         Console.WriteLine(await cloudStorage.GetUploadUrlAsync("anyFile", default));
 

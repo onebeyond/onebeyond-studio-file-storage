@@ -20,12 +20,12 @@ using OneBeyond.Studio.FileStorage.Domain.Options;
 
 namespace OneBeyond.Studio.FileStorage.Azure;
 
-internal sealed class AzureBlobFileStorage : FileStorageBase
+public class AzureBlobFileStorage : FileStorageBase
 {
     private const string BLOB_METADATA_FILE_NAME = "fileName";
 
-    private readonly AsyncLazy<BlobContainerClient> _defaultBlobContainerClient;
-    private readonly AzureBlobFileStorageOptions _fileStorageOptions;
+    protected readonly AsyncLazy<BlobContainerClient> _defaultBlobContainerClient;
+    protected readonly AzureBlobFileStorageOptions _fileStorageOptions;
 
     public AzureBlobFileStorage(
         MimeTypeValidationOptions mimeTypeValidationOptions,
@@ -198,13 +198,13 @@ internal sealed class AzureBlobFileStorage : FileStorageBase
         await blobClient.DeleteIfExistsAsync(cancellationToken: cancellationToken).ConfigureAwait(false);
     }
 
-    private async Task<BlobClient> GetBlobClientAsync(FileRecord.ID fileId)
+    protected async Task<BlobClient> GetBlobClientAsync(FileRecord.ID fileId)
     {
         var cloudBlobContainer = await _defaultBlobContainerClient.Task.ConfigureAwait(false);
 
         return cloudBlobContainer.GetBlobClient(GetBlobName(fileId));
     }
 
-    private static string GetBlobName(FileRecord.ID fileId)
+    protected static string GetBlobName(FileRecord.ID fileId)
         => fileId.ToString().ToUpperInvariant();
 }

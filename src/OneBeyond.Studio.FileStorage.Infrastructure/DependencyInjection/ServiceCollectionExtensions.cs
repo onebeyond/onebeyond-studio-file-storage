@@ -47,10 +47,28 @@ public static class ServiceCollectionExtensions
         this IServiceCollection services,
         Action<ICloudStorageBuilder> cloudStorageBuilderAction)
     {
+        services.AddCloudStorage(
+            new MimeTypeValidationOptions
+            {
+                ValidationMode = MimeTypeValidationMode.Blacklist,
+                MimeTypeSignatures = Array.Empty<MimeTypeSignatureOptions>()
+            },
+            cloudStorageBuilderAction);
+    }
+
+    public static void AddCloudStorage(
+        this IServiceCollection services,
+        MimeTypeValidationOptions validationOptions,
+        Action<ICloudStorageBuilder> cloudStorageBuilderAction)
+    {
         EnsureArg.IsNotNull(services, nameof(services));
+        EnsureArg.IsNotNull(validationOptions, nameof(validationOptions));
         EnsureArg.IsNotNull(cloudStorageBuilderAction, nameof(cloudStorageBuilderAction));
+
+        services.AddSingleton(validationOptions);
 
         var cloudStorageBuilder = new CloudStorageBuilder(services);
         cloudStorageBuilderAction(cloudStorageBuilder);
     }
+
 }
