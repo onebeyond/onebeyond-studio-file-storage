@@ -54,9 +54,6 @@ public static class ServiceCollectionExtensions
                 MimeTypeSignatures = Array.Empty<MimeTypeSignatureOptions>()
             },
             cloudStorageBuilderAction);
-
-        var cloudStorageBuilder = new CloudStorageBuilder(services);
-        cloudStorageBuilderAction(cloudStorageBuilder);
     }
 
     public static void AddCloudStorage(

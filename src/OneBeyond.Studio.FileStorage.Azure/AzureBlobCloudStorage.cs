@@ -47,7 +47,7 @@ public class AzureBlobCloudStorage : AzureBlobFileStorage, ICloudFileStorage
         string fileName, 
         Stream fileContent, 
         string fileContentType, 
-        Dictionary<string, string>? tags = null, 
+        IDictionary<string, string>? tags = null, 
         CancellationToken cancellationToken = default)
     {
         var fileRecord = await UploadFileAsync(fileName, fileContent, fileContentType, cancellationToken);
@@ -64,7 +64,7 @@ public class AzureBlobCloudStorage : AzureBlobFileStorage, ICloudFileStorage
         string fileName, 
         byte[] fileContent, 
         string fileContentType, 
-        Dictionary<string, string>? tags = null, 
+        IDictionary<string, string>? tags = null, 
         CancellationToken cancellationToken = default)
     {
         var fileRecord = await UploadFileAsync(fileName, fileContent, fileContentType, cancellationToken);
@@ -77,7 +77,10 @@ public class AzureBlobCloudStorage : AzureBlobFileStorage, ICloudFileStorage
         return fileRecord;
     }
 
-    public async Task UpdateFileTagsAsync(FileRecord fileRecord, Dictionary<string, string> tags, CancellationToken cancellationToken = default)
+    public async Task UpdateFileTagsAsync(
+        FileRecord fileRecord, 
+        IDictionary<string, string> tags, 
+        CancellationToken cancellationToken = default)
     {
         EnsureArg.IsNotNull(tags, nameof(tags));
 

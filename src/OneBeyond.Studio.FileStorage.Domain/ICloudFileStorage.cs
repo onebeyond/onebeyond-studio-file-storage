@@ -35,13 +35,13 @@ public interface ICloudFileStorage : IFileStorage
     /// <param name="fileName">Name of the file to be uploaded</param>
     /// <param name="fileContentType">File content type</param>
     /// <param name="fileContent">File data</param>
-    /// <param name="cancellationToken"></param>
+    /// <param name="tags">Tags that should be associated with the file</param>
     /// <returns></returns>
     Task<FileRecord> UploadFileAsync(
         string fileName,
         Stream fileContent,
         string fileContentType,
-        Dictionary<string, string>? tags = null,
+        IDictionary<string, string>? tags = null,
         CancellationToken cancellationToken = default);
 
     /// <summary>
@@ -50,17 +50,22 @@ public interface ICloudFileStorage : IFileStorage
     /// <param name="fileName">Name of the file to be uploaded</param>
     /// <param name="fileContentType">File content type</param>
     /// <param name="fileContent">File data</param>
-    /// <param name="cancellationToken"></param>
+    /// <param name="tags">Tags that should be associated with the file</param>
     /// <returns></returns>
     Task<FileRecord> UploadFileAsync(
         string fileName,
         byte[] fileContent,
         string fileContentType,
-        Dictionary<string, string>? tags = null,
+        IDictionary<string, string>? tags = null,
         CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Update file tags
     /// </summary>
-    Task UpdateFileTagsAsync(FileRecord fileRecord, Dictionary<string, string> tags, CancellationToken cancellationToken = default);
+    /// <param name="fileRecord">File record for the file the tags need to be added to</param>
+    /// <param name="tags">Tags that should be associated with the file</param>
+    Task UpdateFileTagsAsync(
+        FileRecord fileRecord, 
+        IDictionary<string, string> tags, 
+        CancellationToken cancellationToken = default);
 }
