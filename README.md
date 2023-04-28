@@ -1,14 +1,28 @@
-<p align="center">
+<p>
   <a href="https://one-beyond.com">
-    <img src="Logo.png" width="700" alt="One Beyond" />
+    <img src="Logo.png" width="300" alt="One Beyond" />
   </a>
 </p>
 
-# One Beyond File Storage Providers Dependencies
+[![Nuget version](https://img.shields.io/nuget/v/OneBeyond.Studio.FileStorage.Domain?style=plastic)](https://www.nuget.org/packages/OneBeyond.Studio.FileStorage.Domain)
+[![Nuget downloads](https://img.shields.io/nuget/dt/OneBeyond.Studio.FileStorage.Domain?style=plastic)](https://www.nuget.org/packages/OneBeyond.Studio.FileStorage.Domain)
+[![License](https://img.shields.io/github/license/OneBeyond/onebeyond-studio-file-storage?style=plastic)](LICENSE)
 
-```mermaid
- graph BT;
- B1[FileStorage.Infrastructure] --> A1[FileStorage.Domain];
- C1[FileStorage.FileSystem] --> B1[FileStorage.Infrastructure];
- D1[FileStorage.Azure] --> B1[FileStorage.Infrastructure];
-```
+# Introduction
+On Beyond Studio File Storage is a set of .NET libraries that can be used by developers as a foundation to create their solutions based on Clean Architecture principles.
+
+### Supported .NET version:
+
+7.0
+
+### Installation
+
+`dotnet new install Monaco.Template`
+
+### Documentation
+
+For more detailed documentation, please refer to our [Wiki](https://github.com/onebeyond/onebeyond-studio-file-storage/wiki)
+
+### Contributing
+
+If you want to contribute, we are currently accepting PRs and/or proposals/discussions in the issue tracker.
