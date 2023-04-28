@@ -9,7 +9,10 @@
 [![License](https://img.shields.io/github/license/OneBeyond/onebeyond-studio-file-storage?style=plastic)](LICENSE)
 
 # Introduction
-On Beyond Studio File Storage is a set of .NET libraries that can be used by developers as a foundation to create their solutions based on Clean Architecture principles.
+On Beyond Studio File Storage is a set of .NET libraries that helps you to abstract file storage in your application.
+At this moment, we support two types of storage:
+- [File System Storage](https://www.nuget.org/packages/OneBeyond.Studio.FileStorage.FileSystem)
+- [Azure Blobs Storage](https://www.nuget.org/packages/OneBeyond.Studio.FileStorage.Azure)
 
 ### Supported .NET version:
 
@@ -17,7 +20,17 @@ On Beyond Studio File Storage is a set of .NET libraries that can be used by dev
 
 ### Installation
 
-`dotnet new install Monaco.Template`
+The library that contains IFileStorage abstraction:
+
+`dotnet new install OneBeyond.Studio.FileStorage.Domain`
+
+The library that contains IFileStorage implementation based on File System:
+
+`dotnet new install OneBeyond.Studio.FileStorage.FileSystem`
+
+The library that contains IFileStorage implementation based on Azure Blobs:
+
+`dotnet new install OneBeyond.Studio.FileStorage.Azure`
 
 ### Documentation
 
