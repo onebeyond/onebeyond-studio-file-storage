@@ -2,15 +2,13 @@ using System.Collections.Generic;
 
 namespace OneBeyond.Studio.FileStorage.Domain.Options;
 
-/// <summary>
-/// </summary>
-public sealed class MimeTypeSignatureOptions
+public sealed record MimeTypeSignatureOptions
 {
     /// <summary>
     /// </summary>
-    public string MimeType { get; set; }
+    public string MimeType { get; init; } = default!;
 
     /// <summary>
     /// </summary>
-    public IReadOnlyCollection<string> Signatures { get; set; }
+    public IReadOnlyCollection<string> Signatures { get; init; } = default!;
 }
