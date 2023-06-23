@@ -48,7 +48,7 @@ public interface IFileStorage
     Task UpdateFileContentAsync(
         FileRecord fileRecord,
         Stream fileContent,
-        string fileContentType = default,
+        string? fileContentType = default,
         CancellationToken cancellationToken = default);
 
     /// <summary>
@@ -61,7 +61,7 @@ public interface IFileStorage
     Task UpdateFileContentAsync(
         FileRecord fileRecord,
         byte[] fileContent,
-        string fileContentType = default,
+        string? fileContentType = default,
         CancellationToken cancellationToken = default);
 
     /// <summary>
@@ -72,7 +72,7 @@ public interface IFileStorage
     /// <returns>File record for the copy of the file</returns>
     Task<FileRecord> CopyFileAsync(
         FileRecord fileRecord,
-        string fileName = null,
+        string? fileName = default,
         CancellationToken cancellationToken = default);
 
     /// <summary>

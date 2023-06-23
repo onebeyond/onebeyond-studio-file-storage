@@ -79,10 +79,10 @@ public abstract class FileStorageBase : IFileStorage
     public async Task UpdateFileContentAsync(
         FileRecord fileRecord,
         Stream fileContent,
-        string fileContentType,
+        string? fileContentType = default,
         CancellationToken cancellationToken = default)
     {
-        if (!_mimeTypeValidationStrategy.IsFileAllowed(fileContent, fileContentType))
+        if ((fileContentType is not null) && !_mimeTypeValidationStrategy.IsFileAllowed(fileContent, fileContentType))
         {
             throw new FileNotAllowedException(fileRecord.Name, fileContentType);
         }
@@ -99,10 +99,10 @@ public abstract class FileStorageBase : IFileStorage
     public async Task UpdateFileContentAsync(
         FileRecord fileRecord,
         byte[] fileContent,
-        string fileContentType,
+        string? fileContentType = default,
         CancellationToken cancellationToken = default)
     {
-        if (!_mimeTypeValidationStrategy.IsFileAllowed(fileContent, fileContentType))
+        if ((fileContentType is not null) && !_mimeTypeValidationStrategy.IsFileAllowed(fileContent, fileContentType))
         {
             throw new FileNotAllowedException(fileRecord.Name, fileContentType);
         }
@@ -125,7 +125,7 @@ public abstract class FileStorageBase : IFileStorage
     /// <returns>File record for the file copy</returns>
     public async Task<FileRecord> CopyFileAsync(
         FileRecord fileRecord,
-        string? fileName = null,
+        string? fileName = default,
         CancellationToken cancellationToken = default)
     {
         var newFileRecord = fileRecord.Copy(fileName);
