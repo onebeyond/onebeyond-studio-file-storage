@@ -7,6 +7,8 @@
 [![Nuget version](https://img.shields.io/nuget/v/OneBeyond.Studio.FileStorage.Domain?style=plastic)](https://www.nuget.org/packages/OneBeyond.Studio.FileStorage.Domain)
 [![Nuget downloads](https://img.shields.io/nuget/dt/OneBeyond.Studio.FileStorage.Domain?style=plastic)](https://www.nuget.org/packages/OneBeyond.Studio.FileStorage.Domain)
 [![License](https://img.shields.io/github/license/OneBeyond/onebeyond-studio-file-storage?style=plastic)](LICENSE)
+[![Maintainability](https://api.codeclimate.com/v1/badges/84e810be2f54c7f1a34d/maintainability)](https://codeclimate.com/github/onebeyond/onebeyond-studio-file-storage/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/84e810be2f54c7f1a34d/test_coverage)](https://codeclimate.com/github/onebeyond/onebeyond-studio-file-storage/test_coverage)
 
 # Introduction
 On Beyond Studio File Storage is a set of .NET libraries that helps you to abstract file storage in your application.
