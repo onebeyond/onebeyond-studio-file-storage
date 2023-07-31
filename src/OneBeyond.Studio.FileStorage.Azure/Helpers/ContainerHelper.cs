@@ -7,6 +7,7 @@ using EnsureThat;
 using Nito.AsyncEx;
 using OneBeyond.Studio.FileStorage.Azure.Exceptions;
 using OneBeyond.Studio.FileStorage.Azure.Options;
+using OneBeyond.Studio.FileStorage.Azure.Options.Validators;
 using OneBeyond.Studio.FileStorage.Domain;
 
 namespace OneBeyond.Studio.FileStorage.Azure.Helpers;
