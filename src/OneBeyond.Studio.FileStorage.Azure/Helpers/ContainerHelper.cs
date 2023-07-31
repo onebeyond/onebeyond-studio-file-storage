@@ -1,8 +1,9 @@
 using System;
-using System.Text.RegularExpressions;
+using Azure.Identity;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Specialized;
 using Azure.Storage.Sas;
+using EnsureThat;
 using Nito.AsyncEx;
 using OneBeyond.Studio.FileStorage.Azure.Exceptions;
 using OneBeyond.Studio.FileStorage.Azure.Options;
@@ -12,15 +13,16 @@ namespace OneBeyond.Studio.FileStorage.Azure.Helpers;
 
 internal static class ContainerHelper
 {
-    private static readonly Regex _containerCharacterRegex = new(@"^[a-z0-9-]*$", RegexOptions.Compiled);
-    private static readonly Regex _containerFullValidityRegex = new(@"^[a-z0-9](?!.*--)[a-z0-9-]{1,61}[a-z0-9]$", RegexOptions.Compiled);
-
     public static AsyncLazy<BlobContainerClient> CreateBlobContainerClient(
         AzureBaseStorageOptions options)
     {
-        ValidateContainerName(options.ContainerName!);
+        EnsureArg.IsNotNull(options, nameof(options));
+        options.EnsureIsValid();
 
-        var blobServiceClient = new BlobServiceClient(options.ConnectionString);
+        var blobServiceClient = string.IsNullOrWhiteSpace(options.AccountName)
+            ? new BlobServiceClient(options.ConnectionString)
+            : new BlobServiceClient(new Uri($"https://{options.AccountName}.blob.core.windows.net"), new DefaultAzureCredential());
+        
         return new AsyncLazy<BlobContainerClient>(
             async () =>
             {
@@ -73,29 +75,5 @@ internal static class ContainerHelper
         }
 
         return blobClient.GenerateSasUri(sasBuilder);
-    }
-
-    //This is designed to improve information about what is and is not valid for a given azure container name.
-    private static void ValidateContainerName(string containerName)
-    {
-        if (string.IsNullOrWhiteSpace(containerName))
-        {
-            throw new AzureStorageException("Container name cannot be empty.");
-        }
-
-        if (containerName.Length < 3 || containerName.Length > 63)
-        {
-            throw new AzureStorageException("Container name must be between 3 and 63 characters in length.");
-        }
-
-        if (!_containerCharacterRegex.IsMatch(containerName))
-        {
-            throw new AzureStorageException("Container name can only contain lowercase letters, numbers or hyphens.");
-        }
-
-        if (!_containerFullValidityRegex.IsMatch(containerName))
-        {
-            throw new AzureStorageException("Container name must start and end with a number or letter and cannot contain multiple hyphens in sequence.");
-        }
     }
 }
