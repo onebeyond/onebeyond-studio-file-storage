@@ -8,13 +8,13 @@ public abstract partial record AzureBaseStorageOptions
 {
     /// <summary>
     /// The name of the Azure Storage Account to use for Azure Identity authentication.
-    /// NOTE: If specified, a connection string must not be provided.
+    /// NOTE: If specified, the <ref>ConnectionString</ref> must not be provided.
     /// </summary>
     public string? AccountName { get; init; }
 
     /// <summary>
     /// The connection string to use for authentication.
-    /// NOTE: if specified, a resource name must not be provided.
+    /// NOTE: if specified, the <ref>AccountName</ref> must not be provided.
     /// </summary>
     public string? ConnectionString { get; init; }
 
