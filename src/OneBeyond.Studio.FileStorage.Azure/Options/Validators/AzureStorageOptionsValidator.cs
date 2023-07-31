@@ -59,4 +59,3 @@ namespace OneBeyond.Studio.FileStorage.Azure.Options.Validators
         private static partial Regex ContainerFullValidityRegex();
     }
 } 
-}
