@@ -4,11 +4,8 @@ using System.Text.RegularExpressions;
 
 namespace OneBeyond.Studio.FileStorage.Azure.Options;
 
-public abstract record AzureBaseStorageOptions
+public abstract partial record AzureBaseStorageOptions
 {
-    private static readonly Regex _containerCharacterRegex = new(@"^[a-z0-9-]*$", RegexOptions.Compiled);
-    private static readonly Regex _containerFullValidityRegex = new(@"^[a-z0-9](?!.*--)[a-z0-9-]{1,61}[a-z0-9]$", RegexOptions.Compiled);
-
     /// <summary>
     /// The name of the Azure Storage Account to use for Azure Identity authentication.
     /// NOTE: If specified, a connection string must not be provided.
@@ -63,14 +60,20 @@ public abstract record AzureBaseStorageOptions
             throw new AzureStorageException("Container name must be between 3 and 63 characters in length.");
         }
 
-        if (!_containerCharacterRegex.IsMatch(containerName))
+        if (!ContainerCharacterRegex().IsMatch(containerName))
         {
             throw new AzureStorageException("Container name can only contain lowercase letters, numbers or hyphens.");
         }
 
-        if (!_containerFullValidityRegex.IsMatch(containerName))
+        if (!ContainerFullValidityRegex().IsMatch(containerName))
         {
             throw new AzureStorageException("Container name must start and end with a number or letter and cannot contain multiple hyphens in sequence.");
         }
     }
+
+    [GeneratedRegex("^[a-z0-9-]*$", RegexOptions.Compiled)]
+    private static partial Regex ContainerCharacterRegex();
+    
+    [GeneratedRegex("^[a-z0-9](?!.*--)[a-z0-9-]{1,61}[a-z0-9]$", RegexOptions.Compiled)]
+    private static partial Regex ContainerFullValidityRegex();
 }
