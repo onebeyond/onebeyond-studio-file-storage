@@ -8,11 +8,9 @@ namespace OneBeyond.Studio.FileStorage.Infrastructure.DependencyInjection;
 public static class ServiceCollectionExtensions
 {
     /// <summary>
-    /// Registers the file manager using the given builder action
+    /// Registers the file storage using the given builder action
     /// </summary>
     /// <param name="services"></param>
-    /// <param name="configuration"></param>
-    /// <param name="fileRecordsConnectionString">the connection string to the db where file records will be saved</param>
     /// <param name="fileStorageBuilderAction"></param>
     public static void AddFileStorage(
         this IServiceCollection services,
@@ -27,6 +25,12 @@ public static class ServiceCollectionExtensions
             fileStorageBuilderAction);
     }
 
+    /// <summary>
+    /// Registers the file storage using the given builder action and validation options
+    /// </summary>
+    /// <param name="services"></param>
+    /// <param name="validationOptions"></param>
+    /// <param name="fileStorageBuilderAction"></param>
     public static void AddFileStorage(
         this IServiceCollection services,
         MimeTypeValidationOptions validationOptions,
@@ -43,6 +47,12 @@ public static class ServiceCollectionExtensions
         fileStorageBuilderAction(fileStorageBuilder);
     }
 
+
+    /// <summary>
+    /// Registers the file storage using the given cloud builder action
+    /// </summary>
+    /// <param name="services"></param>
+    /// <param name="cloudStorageBuilderAction"></param>
     public static void AddCloudStorage(
         this IServiceCollection services,
         Action<ICloudStorageBuilder> cloudStorageBuilderAction)
@@ -56,6 +66,12 @@ public static class ServiceCollectionExtensions
             cloudStorageBuilderAction);
     }
 
+    /// <summary>
+    /// Registers the file storage using the given cloud builder action and validation options
+    /// </summary>
+    /// <param name="services"></param>
+    /// <param name="validationOptions"></param>
+    /// <param name="cloudStorageBuilderAction"></param>
     public static void AddCloudStorage(
         this IServiceCollection services,
         MimeTypeValidationOptions validationOptions,

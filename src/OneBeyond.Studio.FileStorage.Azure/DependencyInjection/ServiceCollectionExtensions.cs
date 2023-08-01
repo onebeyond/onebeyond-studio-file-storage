@@ -30,6 +30,7 @@ public static class ServiceCollectionExtensions
         EnsureArg.IsNotNull(cloudStorageOptions, nameof(cloudStorageOptions));
 
         cloudStorageBuilder.Services.AddSingleton(cloudStorageOptions);
+
         cloudStorageBuilder.Services.AddTransient<ICloudFileStorage, AzureBlobCloudStorage>();
 
         return cloudStorageBuilder;
