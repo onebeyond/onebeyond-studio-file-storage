@@ -1,8 +1,6 @@
 using EnsureThat;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using OneBeyond.Studio.FileStorage.Azure.Options;
-using OneBeyond.Studio.FileStorage.Azure.Options.Validators;
 using OneBeyond.Studio.FileStorage.Domain;
 using OneBeyond.Studio.FileStorage.Infrastructure.DependencyInjection;
 
@@ -18,8 +16,6 @@ public static class ServiceCollectionExtensions
         EnsureArg.IsNotNull(options, nameof(options));
 
         fileRepositoryBuilder.Services.AddSingleton(options);
-        fileRepositoryBuilder.Services.AddSingleton<IValidateOptions
-                              <AzureBlobFileStorageOptions>, AzureStorageOptionsValidator<AzureBlobFileStorageOptions>>();
 
         fileRepositoryBuilder.Services.AddTransient<IFileStorage, AzureBlobFileStorage>();
 
@@ -34,8 +30,6 @@ public static class ServiceCollectionExtensions
         EnsureArg.IsNotNull(cloudStorageOptions, nameof(cloudStorageOptions));
 
         cloudStorageBuilder.Services.AddSingleton(cloudStorageOptions);
-        cloudStorageBuilder.Services.AddSingleton<IValidateOptions
-                             <AzureBlobCloudStorageOptions>, AzureStorageOptionsValidator<AzureBlobCloudStorageOptions>>();
 
         cloudStorageBuilder.Services.AddTransient<ICloudFileStorage, AzureBlobCloudStorage>();
 

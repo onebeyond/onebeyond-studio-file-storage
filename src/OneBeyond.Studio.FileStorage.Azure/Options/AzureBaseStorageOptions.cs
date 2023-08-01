@@ -2,7 +2,7 @@ using System;
 
 namespace OneBeyond.Studio.FileStorage.Azure.Options;
 
-public abstract partial record AzureBaseStorageOptions
+public abstract record AzureBaseStorageOptions
 {
     /// <summary>
     /// The name of the Azure Storage Account to use for Azure Identity authentication.
