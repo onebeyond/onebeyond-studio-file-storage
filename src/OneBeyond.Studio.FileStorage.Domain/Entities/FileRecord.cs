@@ -5,8 +5,6 @@ using System.Runtime.Serialization;
 
 namespace OneBeyond.Studio.FileStorage.Domain.Entities;
 
-/// <summary>
-/// </summary>
 public class FileRecord
 {
     public FileRecord(string name, long size, string contentType)
