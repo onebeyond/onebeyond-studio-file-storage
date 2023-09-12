@@ -1,8 +1,6 @@
 using System.IO;
 using OneBeyond.Studio.FileStorage.Domain.Options;
 
-#nullable enable
-
 namespace OneBeyond.Studio.FileStorage.Domain.Validations;
 
 internal sealed class WhitelistMimeTypeValidationStrategy : MimeTypeValidationStrategy

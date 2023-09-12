@@ -5,8 +5,6 @@ using System.Linq;
 using EnsureThat;
 using OneBeyond.Studio.FileStorage.Domain.Options;
 
-#nullable enable
-
 namespace OneBeyond.Studio.FileStorage.Domain.Validations;
 
 internal abstract class MimeTypeValidationStrategy

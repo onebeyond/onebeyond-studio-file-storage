@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 
-#nullable enable
-
 namespace OneBeyond.Studio.FileStorage.Domain.Options;
 
 /// <summary>
