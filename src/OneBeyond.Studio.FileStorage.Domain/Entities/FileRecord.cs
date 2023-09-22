@@ -55,7 +55,7 @@ public class FileRecord
     /// <param name="fileName">New file name</param>
     /// <returns></returns>
     public FileRecord Copy(string? fileName = null)
-        => new FileRecord(
+        => new(
             string.IsNullOrWhiteSpace(fileName) ? Name : fileName,
             Size,
             ContentType);
