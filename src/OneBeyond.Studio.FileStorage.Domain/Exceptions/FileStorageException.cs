@@ -1,5 +1,4 @@
 using System;
-using System.Runtime.Serialization;
 
 namespace OneBeyond.Studio.FileStorage.Domain.Exceptions;
 
@@ -16,11 +15,6 @@ public class FileStorageException : Exception
 
     public FileStorageException(string message, Exception innerException)
         : base(message, innerException)
-    {
-    }
-
-    protected FileStorageException(SerializationInfo info, StreamingContext context)
-        : base(info, context)
     {
     }
 }
