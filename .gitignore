@@ -16,3 +16,9 @@
 /src/OneBeyond.Studio.FileStorage.FileSystem/obj
 /src/OneBeyond.Studio.FileStorage.Infrastructure/bin/Debug/net7.0
 /src/OneBeyond.Studio.FileStorage.Infrastructure/obj
+/src/OneBeyond.Studio.FileStorage.Azure/bin/Debug/net8.0
+/src/OneBeyond.Studio.FileStorage.ConsoleApp/bin/Debug/net8.0
+/src/OneBeyond.Studio.FileStorage.Domain/bin/Debug/net8.0
+/src/OneBeyond.Studio.FileStorage.Domain.Tests/bin/Debug/net8.0
+/src/OneBeyond.Studio.FileStorage.FileSystem/bin/Debug/net8.0
+/src/OneBeyond.Studio.FileStorage.Infrastructure/bin/Debug/net8.0

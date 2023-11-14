@@ -14,9 +14,4 @@ public sealed class AzureStorageException : FileStorageException
     public AzureStorageException(string message, Exception innerException) : base(message, innerException)
     {
     }
-
-    private AzureStorageException(SerializationInfo info, StreamingContext context)
-        : base(info, context)
-    {
-    }
 }
