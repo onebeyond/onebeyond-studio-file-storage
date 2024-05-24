@@ -1,5 +1,7 @@
 using System;
 using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
 using Azure.Identity;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Specialized;
@@ -14,7 +16,7 @@ namespace OneBeyond.Studio.FileStorage.Azure.Helpers;
 
 internal static partial class ContainerHelper
 {
-    public static AsyncLazy<BlobContainerClient> CreateBlobContainerClient(
+    public static BlobServiceClient CreateBlobServiceClient(
         AzureBaseStorageOptions options)
     {
         EnsureArg.IsNotNull(options, nameof(options));
@@ -23,7 +25,17 @@ internal static partial class ContainerHelper
         var blobServiceClient = string.IsNullOrWhiteSpace(options.AccountName)
             ? new BlobServiceClient(options.ConnectionString)
             : new BlobServiceClient(new Uri($"https://{options.AccountName}.blob.core.windows.net"), new DefaultAzureCredential());
-        
+
+        return blobServiceClient;
+    }
+
+    public static AsyncLazy<BlobContainerClient> CreateBlobContainerClient(
+        BlobServiceClient blobServiceClient,
+        AzureBaseStorageOptions options)
+    {
+        EnsureArg.IsNotNull(options, nameof(options));
+        ValidateOptions(options);
+
         return new AsyncLazy<BlobContainerClient>(
             async () =>
             {
@@ -34,6 +46,19 @@ internal static partial class ContainerHelper
             AsyncLazyFlags.RetryOnFailure);
     }
 
+    /// <summary>
+    /// Generates a Shared Access Signature (SAS) URI for a blob in Azure Blob Storage, allowing specific actions
+    /// for a specified duration. This method requires Shared Key credentials.
+    /// </summary>
+    /// <param name="blobFileId">The unique identifier for the blob within the storage container.</param>
+    /// <param name="action">The type of access (e.g., read, write) to grant with the SAS token.</param>
+    /// <param name="containerClient">The BlobContainerClient for the target storage container.</param>
+    /// <param name="sharedAccessDuration">The duration for which the SAS token will be valid.</param>
+    /// <returns>
+    /// A URI containing the SAS token for the specified blob. This URI can be used to access the blob with 
+    /// the granted permissions within the specified duration.
+    /// </returns>
+    /// <exception cref="AzureStorageException">Thrown if the BlobClient is not authorized with Shared Key credentials.</exception>
     public static Uri GetSharedAccessUriFromContainer(
         string blobFileId,
         CloudStorageAction action,
@@ -42,17 +67,77 @@ internal static partial class ContainerHelper
     {
         BlobHelper.ValidateBlobName(blobFileId);
 
-        var escapedBlobName = Uri.EscapeDataString(blobFileId);
-        var blobClient = containerClient.GetBlobClient(escapedBlobName);
-
+        var blobClient = GetBlobClient(containerClient, blobFileId);
         if (!blobClient.CanGenerateSasUri)
         {
             throw new AzureStorageException("BlobClient must be authorized with Shared Key credentials to create a service SAS.");
         }
 
-        var startsOn = DateTime.UtcNow;
+        var accessDuration = CalculateAccessDuration(sharedAccessDuration);
+        var sasBuilder = CreateBlobSasBuilder(blobClient, action, accessDuration.StartsOn, accessDuration.EndsOn);
 
-        var endsOn = startsOn.Add(sharedAccessDuration);
+        return blobClient.GenerateSasUri(sasBuilder);
+    }
+
+    /// <summary>
+    /// Generates a Shared Access Signature (SAS) URI for a blob in Azure Blob Storage with user-delegated permissions,
+    /// allowing specific actions for a specified duration.
+    /// </summary>
+    /// <param name="blobFileId">The unique identifier for the blob within the storage container.</param>
+    /// <param name="action">The type of access (e.g., read, write) to grant with the SAS token.</param>
+    /// <param name="serviceClient">The BlobServiceClient used to obtain the user delegation key.</param>
+    /// <param name="containerClient">The BlobContainerClient for the target storage container.</param>
+    /// <param name="sharedAccessDuration">The duration for which the SAS token will be valid.</param>
+    /// <returns>
+    /// URI that includes the SAS token for the specified blob.
+    /// This URI can be used to access the blob with the granted permissions within the specified duration.
+    /// </returns>
+    public static async Task<Uri> GenerateUserDelegatedBlobSasUriAsync(
+        string blobFileId,
+        CloudStorageAction action,
+        BlobServiceClient serviceClient,
+        BlobContainerClient containerClient,
+        TimeSpan sharedAccessDuration,
+        CancellationToken cancellationToken)
+    {
+        BlobHelper.ValidateBlobName(blobFileId);
+
+        var blobClient = GetBlobClient(containerClient, blobFileId);
+
+        var accessDuration = CalculateAccessDuration(sharedAccessDuration);
+
+        var sasBuilder = CreateBlobSasBuilder(blobClient, action, accessDuration.StartsOn, accessDuration.EndsOn);
+
+        var userDelegationKey = await serviceClient.GetUserDelegationKeyAsync(
+            accessDuration.StartsOn,
+            accessDuration.EndsOn,
+            cancellationToken)
+            .ConfigureAwait(false);
+
+        var sasToken = sasBuilder.ToSasQueryParameters(userDelegationKey, serviceClient.AccountName);
+
+        var blobUriBuilder = new BlobUriBuilder(containerClient.Uri);
+
+        blobUriBuilder.BlobName = blobClient.Name;
+        blobUriBuilder.Sas = sasToken;
+
+        return blobUriBuilder.ToUri();
+    }
+
+    private static BlobClient GetBlobClient(
+        BlobContainerClient containerClient,
+        string blobFileId)
+    {
+        var escapedBlobName = Uri.EscapeDataString(blobFileId);
+        return containerClient.GetBlobClient(escapedBlobName);
+    }
+
+    private static BlobSasBuilder CreateBlobSasBuilder(
+        BlobClient blobClient,
+        CloudStorageAction action,
+        DateTime startsOn,
+        DateTime endsOn)
+    {
         var sasBuilder = new BlobSasBuilder
         {
             BlobContainerName = blobClient.GetParentBlobContainerClient().Name,
@@ -75,7 +160,7 @@ internal static partial class ContainerHelper
                 break;
         }
 
-        return blobClient.GenerateSasUri(sasBuilder);
+        return sasBuilder;
     }
 
     private static void ValidateOptions(AzureBaseStorageOptions options)
@@ -119,6 +204,15 @@ internal static partial class ContainerHelper
         {
             throw new AzureStorageException("Container name must start and end with a number or letter and cannot contain multiple hyphens in sequence.");
         }
+    }
+
+    private static (DateTime StartsOn, DateTime EndsOn) CalculateAccessDuration(
+        TimeSpan sharedAccessDuration)
+    {
+        var startsOn = DateTime.UtcNow;
+        var endsOn = startsOn.Add(sharedAccessDuration);
+
+        return (startsOn, endsOn);
     }
 
     [GeneratedRegex("^[a-z0-9-]*$", RegexOptions.Compiled)]

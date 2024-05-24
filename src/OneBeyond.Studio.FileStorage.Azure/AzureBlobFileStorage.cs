@@ -26,6 +26,7 @@ public class AzureBlobFileStorage : FileStorageBase
 
     protected readonly AsyncLazy<BlobContainerClient> _defaultBlobContainerClient;
     protected readonly AzureBlobFileStorageOptions _fileStorageOptions;
+    protected readonly BlobServiceClient _blobServiceClient;
 
     public AzureBlobFileStorage(
         MimeTypeValidationOptions mimeTypeValidationOptions,
@@ -34,17 +35,22 @@ public class AzureBlobFileStorage : FileStorageBase
     {
         EnsureArg.IsNotNull(fileStorageOptions, nameof(fileStorageOptions));
 
-        _fileStorageOptions = fileStorageOptions;
-        _defaultBlobContainerClient = ContainerHelper.CreateBlobContainerClient(fileStorageOptions);
+        _fileStorageOptions = fileStorageOptions; 
+        _blobServiceClient = ContainerHelper.CreateBlobServiceClient(fileStorageOptions);
+
+        _defaultBlobContainerClient = ContainerHelper.CreateBlobContainerClient(
+            _blobServiceClient,
+            fileStorageOptions);
     }
 
     protected override async Task<Uri> DoGetFileUrlAsync(
         FileRecord.ID fileId,
         CancellationToken cancellationToken)
     {
-        if (_fileStorageOptions.SharedAccessDuration is null || _fileStorageOptions.SharedAccessDuration.Value <= TimeSpan.Zero)
+        if (_fileStorageOptions.SharedAccessDuration is null ||
+            _fileStorageOptions.SharedAccessDuration.Value <= TimeSpan.Zero)
         {
-            throw new AzureStorageException("Unable to generate a file url, SharedAccessDurationis not set.");
+            throw new AzureStorageException("Unable to generate a file URL, SharedAccessDuration is not set.");
         }
 
         var fileName = GetBlobName(fileId);
@@ -52,14 +58,26 @@ public class AzureBlobFileStorage : FileStorageBase
         cancellationToken.ThrowIfCancellationRequested();
 
         var containerClient = await _defaultBlobContainerClient.Task.ConfigureAwait(false);
-
+   
         cancellationToken.ThrowIfCancellationRequested();
 
-        return ContainerHelper.GetSharedAccessUriFromContainer(
+        if (string.IsNullOrWhiteSpace(_fileStorageOptions.AccountName))
+        {
+            return ContainerHelper.GetSharedAccessUriFromContainer(
+                fileName,
+                CloudStorageAction.Download,
+                containerClient,
+                _fileStorageOptions.SharedAccessDuration.Value);
+        }
+
+        return await ContainerHelper.GenerateUserDelegatedBlobSasUriAsync(
             fileName,
             CloudStorageAction.Download,
+            _blobServiceClient,
             containerClient,
-            _fileStorageOptions.SharedAccessDuration.Value);
+            _fileStorageOptions.SharedAccessDuration.Value,
+            cancellationToken)
+            .ConfigureAwait(false);
     }
 
     protected override async Task DoUploadFileContentAsync(
