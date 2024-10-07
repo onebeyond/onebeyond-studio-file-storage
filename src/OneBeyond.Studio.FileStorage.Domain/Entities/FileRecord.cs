@@ -70,6 +70,7 @@ public class FileRecord
         }
 
         [JsonIgnore]
+        [System.Text.Json.Serialization.JsonIgnore]
         [IgnoreDataMember]
         public ID Id => this;
 
