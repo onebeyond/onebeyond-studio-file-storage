@@ -1,0 +1,374 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\source\\onebeyond-studio-file-storage\\src\\OneBeyond.Studio.FileStorage.AWS\\OneBeyond.Studio.FileStorage.AWS.csproj": {}
+  },
+  "projects": {
+    "D:\\source\\onebeyond-studio-file-storage\\src\\OneBeyond.Studio.FileStorage.AWS\\OneBeyond.Studio.FileStorage.AWS.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\source\\onebeyond-studio-file-storage\\src\\OneBeyond.Studio.FileStorage.AWS\\OneBeyond.Studio.FileStorage.AWS.csproj",
+        "projectName": "OneBeyond.Studio.FileStorage.AWS",
+        "projectPath": "D:\\source\\onebeyond-studio-file-storage\\src\\OneBeyond.Studio.FileStorage.AWS\\OneBeyond.Studio.FileStorage.AWS.csproj",
+        "packagesPath": "C:\\Users\\alexis.shirtliff\\.nuget\\packages\\",
+        "outputPath": "D:\\source\\onebeyond-studio-file-storage\\src\\OneBeyond.Studio.FileStorage.AWS\\obj\\",
+        "projectStyle": "PackageReference",
+        "centralPackageVersionsManagementEnabled": true,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\alexis.shirtliff\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\source\\onebeyond-studio-file-storage\\src\\OneBeyond.Studio.FileStorage.Infrastructure\\OneBeyond.Studio.FileStorage.Infrastructure.csproj": {
+                "projectPath": "D:\\source\\onebeyond-studio-file-storage\\src\\OneBeyond.Studio.FileStorage.Infrastructure\\OneBeyond.Studio.FileStorage.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "noWarn": [
+            "NU5105"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Azure.Identity": {
+              "target": "Package",
+              "version": "[1.12.1, )",
+              "versionCentrallyManaged": true
+            },
+            "Azure.Storage.Blobs": {
+              "target": "Package",
+              "version": "[12.22.1, )",
+              "versionCentrallyManaged": true
+            },
+            "Microsoft.SourceLink.GitHub": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.0, )",
+              "versionCentrallyManaged": true
+            },
+            "MinVer": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.0, )",
+              "versionCentrallyManaged": true
+            },
+            "Nito.AsyncEx.Coordination": {
+              "target": "Package",
+              "version": "[5.1.2, )",
+              "versionCentrallyManaged": true
+            }
+          },
+          "centralPackageVersions": {
+            "Azure.Identity": "1.12.1",
+            "Azure.Storage.Blobs": "12.22.1",
+            "coverlet.collector": "6.0.2",
+            "Ensure.That": "10.1.0",
+            "Microsoft.EntityFrameworkCore.Tools": "8.0.8",
+            "Microsoft.Extensions.Configuration.Binder": "8.0.2",
+            "Microsoft.Extensions.Configuration.EnvironmentVariables": "8.0.0",
+            "Microsoft.Extensions.Configuration.FileExtensions": "8.0.1",
+            "Microsoft.Extensions.Configuration.Json": "8.0.0",
+            "Microsoft.Extensions.DependencyInjection": "8.0.0",
+            "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.1",
+            "Microsoft.Extensions.Logging.Abstractions": "8.0.1",
+            "Microsoft.NET.Test.Sdk": "17.11.1",
+            "Microsoft.SourceLink.GitHub": "8.0.0",
+            "MinVer": "6.0.0",
+            "morelinq": "4.3.0",
+            "MSTest.TestAdapter": "3.6.1",
+            "MSTest.TestFramework": "3.6.1",
+            "Newtonsoft.Json": "13.0.3",
+            "Nito.AsyncEx.Coordination": "5.1.2"
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\source\\onebeyond-studio-file-storage\\src\\OneBeyond.Studio.FileStorage.Domain\\OneBeyond.Studio.FileStorage.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\source\\onebeyond-studio-file-storage\\src\\OneBeyond.Studio.FileStorage.Domain\\OneBeyond.Studio.FileStorage.Domain.csproj",
+        "projectName": "OneBeyond.Studio.FileStorage.Domain",
+        "projectPath": "D:\\source\\onebeyond-studio-file-storage\\src\\OneBeyond.Studio.FileStorage.Domain\\OneBeyond.Studio.FileStorage.Domain.csproj",
+        "packagesPath": "C:\\Users\\alexis.shirtliff\\.nuget\\packages\\",
+        "outputPath": "D:\\source\\onebeyond-studio-file-storage\\src\\OneBeyond.Studio.FileStorage.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "centralPackageVersionsManagementEnabled": true,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\alexis.shirtliff\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "noWarn": [
+            "NU5105"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Ensure.That": {
+              "target": "Package",
+              "version": "[10.1.0, )",
+              "versionCentrallyManaged": true
+            },
+            "Microsoft.Extensions.Logging.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.1, )",
+              "versionCentrallyManaged": true
+            },
+            "Microsoft.SourceLink.GitHub": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.0, )",
+              "versionCentrallyManaged": true
+            },
+            "MinVer": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.0, )",
+              "versionCentrallyManaged": true
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )",
+              "versionCentrallyManaged": true
+            },
+            "morelinq": {
+              "target": "Package",
+              "version": "[4.3.0, )",
+              "versionCentrallyManaged": true
+            }
+          },
+          "centralPackageVersions": {
+            "Azure.Identity": "1.12.1",
+            "Azure.Storage.Blobs": "12.22.1",
+            "coverlet.collector": "6.0.2",
+            "Ensure.That": "10.1.0",
+            "Microsoft.EntityFrameworkCore.Tools": "8.0.8",
+            "Microsoft.Extensions.Configuration.Binder": "8.0.2",
+            "Microsoft.Extensions.Configuration.EnvironmentVariables": "8.0.0",
+            "Microsoft.Extensions.Configuration.FileExtensions": "8.0.1",
+            "Microsoft.Extensions.Configuration.Json": "8.0.0",
+            "Microsoft.Extensions.DependencyInjection": "8.0.0",
+            "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.1",
+            "Microsoft.Extensions.Logging.Abstractions": "8.0.1",
+            "Microsoft.NET.Test.Sdk": "17.11.1",
+            "Microsoft.SourceLink.GitHub": "8.0.0",
+            "MinVer": "6.0.0",
+            "morelinq": "4.3.0",
+            "MSTest.TestAdapter": "3.6.1",
+            "MSTest.TestFramework": "3.6.1",
+            "Newtonsoft.Json": "13.0.3",
+            "Nito.AsyncEx.Coordination": "5.1.2"
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\source\\onebeyond-studio-file-storage\\src\\OneBeyond.Studio.FileStorage.Infrastructure\\OneBeyond.Studio.FileStorage.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\source\\onebeyond-studio-file-storage\\src\\OneBeyond.Studio.FileStorage.Infrastructure\\OneBeyond.Studio.FileStorage.Infrastructure.csproj",
+        "projectName": "OneBeyond.Studio.FileStorage.Infrastructure",
+        "projectPath": "D:\\source\\onebeyond-studio-file-storage\\src\\OneBeyond.Studio.FileStorage.Infrastructure\\OneBeyond.Studio.FileStorage.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\alexis.shirtliff\\.nuget\\packages\\",
+        "outputPath": "D:\\source\\onebeyond-studio-file-storage\\src\\OneBeyond.Studio.FileStorage.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "centralPackageVersionsManagementEnabled": true,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\alexis.shirtliff\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\source\\onebeyond-studio-file-storage\\src\\OneBeyond.Studio.FileStorage.Domain\\OneBeyond.Studio.FileStorage.Domain.csproj": {
+                "projectPath": "D:\\source\\onebeyond-studio-file-storage\\src\\OneBeyond.Studio.FileStorage.Domain\\OneBeyond.Studio.FileStorage.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "noWarn": [
+            "NU5105"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.Extensions.Configuration.EnvironmentVariables": {
+              "target": "Package",
+              "version": "[8.0.0, )",
+              "versionCentrallyManaged": true
+            },
+            "Microsoft.Extensions.Configuration.FileExtensions": {
+              "target": "Package",
+              "version": "[8.0.1, )",
+              "versionCentrallyManaged": true
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[8.0.0, )",
+              "versionCentrallyManaged": true
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.1, )",
+              "versionCentrallyManaged": true
+            },
+            "Microsoft.SourceLink.GitHub": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.0, )",
+              "versionCentrallyManaged": true
+            },
+            "MinVer": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.0, )",
+              "versionCentrallyManaged": true
+            }
+          },
+          "centralPackageVersions": {
+            "Azure.Identity": "1.12.1",
+            "Azure.Storage.Blobs": "12.22.1",
+            "coverlet.collector": "6.0.2",
+            "Ensure.That": "10.1.0",
+            "Microsoft.EntityFrameworkCore.Tools": "8.0.8",
+            "Microsoft.Extensions.Configuration.Binder": "8.0.2",
+            "Microsoft.Extensions.Configuration.EnvironmentVariables": "8.0.0",
+            "Microsoft.Extensions.Configuration.FileExtensions": "8.0.1",
+            "Microsoft.Extensions.Configuration.Json": "8.0.0",
+            "Microsoft.Extensions.DependencyInjection": "8.0.0",
+            "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.1",
+            "Microsoft.Extensions.Logging.Abstractions": "8.0.1",
+            "Microsoft.NET.Test.Sdk": "17.11.1",
+            "Microsoft.SourceLink.GitHub": "8.0.0",
+            "MinVer": "6.0.0",
+            "morelinq": "4.3.0",
+            "MSTest.TestAdapter": "3.6.1",
+            "MSTest.TestFramework": "3.6.1",
+            "Newtonsoft.Json": "13.0.3",
+            "Nito.AsyncEx.Coordination": "5.1.2"
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

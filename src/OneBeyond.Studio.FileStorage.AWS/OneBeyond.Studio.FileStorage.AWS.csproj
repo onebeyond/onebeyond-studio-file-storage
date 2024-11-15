@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Title>OneBeyond.Studio.FileStorage.AWS</Title>
+    <PackageId>OneBeyond.Studio.FileStorage.AWS</PackageId>
+    <TargetFramework>net8.0</TargetFramework>
+    <nullable>enable</nullable>
+    <WarningsAsErrors>nullable</WarningsAsErrors>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Identity" />
+    <PackageReference Include="Azure.Storage.Blobs" />
+    <PackageReference Include="Nito.AsyncEx.Coordination" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OneBeyond.Studio.FileStorage.Infrastructure\OneBeyond.Studio.FileStorage.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+</Project>
