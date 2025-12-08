@@ -1,8 +1,9 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
+﻿/.vs
+bin
+obj
 
-/.vs
+.*~
+*.~
 /src/OneBeyond.Studio.FileStorage.Azure/bin/Debug/net7.0
 /src/OneBeyond.Studio.FileStorage.Azure/obj
 /src/OneBeyond.Studio.FileStorage.ConsoleApp/bin/Debug/net7.0

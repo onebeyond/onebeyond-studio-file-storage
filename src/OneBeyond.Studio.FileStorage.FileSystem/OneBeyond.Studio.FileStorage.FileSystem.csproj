@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Title>OneBeyond.Studio.FileStorage.FileSystem</Title>
     <PackageId>OneBeyond.Studio.FileStorage.FileSystem</PackageId>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <nullable>enable</nullable>
     <WarningsAsErrors>nullable</WarningsAsErrors>
     <PackageReadmeFile>README.md</PackageReadmeFile>
