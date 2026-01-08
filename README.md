@@ -18,7 +18,7 @@ At this moment, we support two types of storage:
 
 ### Supported .NET version:
 
-7.0
+10.0
 
 ### Installation
 
