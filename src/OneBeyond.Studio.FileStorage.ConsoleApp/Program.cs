@@ -102,5 +102,5 @@ internal static class Program
     private static TOptions GetOptions<TOptions>(this IConfiguration configuration, string sectionKey)
         => configuration
             .GetSection(sectionKey)
-            .Get<TOptions>();
+            .Get<TOptions>()!;
 }

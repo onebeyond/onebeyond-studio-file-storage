@@ -1,0 +1,14 @@
+﻿<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="Directory.Packages.props" />
+    <File Path="src/Directory.Build.props" />
+    <File Path="src/Directory.Build.targets" />
+  </Folder>
+  <Project Path="src/OneBeyond.Studio.FileStorage.Azure/OneBeyond.Studio.FileStorage.Azure.csproj" />
+  <Project Path="src/OneBeyond.Studio.FileStorage.ConsoleApp/OneBeyond.Studio.FileStorage.ConsoleApp.csproj" />
+  <Project Path="src/OneBeyond.Studio.FileStorage.Domain/OneBeyond.Studio.FileStorage.Domain.csproj" />
+  <Project Path="src/OneBeyond.Studio.FileStorage.Domain.Tests/OneBeyond.Studio.FileStorage.Domain.Tests.csproj" />
+  <Project Path="src/OneBeyond.Studio.FileStorage.FileSystem/OneBeyond.Studio.FileStorage.FileSystem.csproj" />
+  <Project Path="src/OneBeyond.Studio.FileStorage.Infrastructure/OneBeyond.Studio.FileStorage.Infrastructure.csproj" />
+</Solution>
