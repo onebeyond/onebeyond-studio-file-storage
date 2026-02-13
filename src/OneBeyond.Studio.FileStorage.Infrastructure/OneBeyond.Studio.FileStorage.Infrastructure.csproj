@@ -1,12 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	<Title>OneBeyond.Studio.FileStorage.Infrastructure</Title>
-	<PackageId>OneBeyond.Studio.FileStorage.Infrastructure</PackageId>
-	<TargetFramework>net10.0</TargetFramework>
-	<nullable>enable</nullable>
-	<WarningsAsErrors>nullable</WarningsAsErrors>
-	<PackageReadmeFile>README.md</PackageReadmeFile>
+	  <Title>OneBeyond.Studio.FileStorage.Infrastructure</Title>
+	  <PackageId>OneBeyond.Studio.FileStorage.Infrastructure</PackageId>
+	  <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 

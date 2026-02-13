@@ -3,9 +3,6 @@
   <PropertyGroup>
     <Title>OneBeyond.Studio.FileStorage.Azure</Title>
     <PackageId>OneBeyond.Studio.FileStorage.Azure</PackageId>
-    <TargetFramework>net10.0</TargetFramework>
-    <nullable>enable</nullable>
-    <WarningsAsErrors>nullable</WarningsAsErrors>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>

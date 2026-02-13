@@ -21,15 +21,15 @@ public sealed class MimeTypeValidationOptionsTests
 
         Assert.AreEqual(MimeTypeValidationMode.Whitelist, options.ValidationMode);
 
-        Assert.AreEqual(2, options.MimeTypeSignatures.Count);
+        Assert.HasCount(2, options.MimeTypeSignatures);
         Assert.IsTrue(options.MimeTypeSignatures.Any((mimeTypeOptions) => mimeTypeOptions.MimeType == "image/png"));
         Assert.IsTrue(options.MimeTypeSignatures.Any((mimeTypeOptions) => mimeTypeOptions.MimeType == "image/jpeg"));
 
         var pngOptions = options.MimeTypeSignatures.Single((mimeTypeOptions) => mimeTypeOptions.MimeType == "image/png");
-        Assert.AreEqual(2, pngOptions.Signatures.Count);
+        Assert.HasCount(2, pngOptions.Signatures);
 
         var jpegOptions = options.MimeTypeSignatures.Single((mimeTypeOptions) => mimeTypeOptions.MimeType == "image/jpeg");
-        Assert.AreEqual(1, jpegOptions.Signatures.Count);
+        Assert.HasCount(1, jpegOptions.Signatures);
     }
 
     private static TOptions GetOptions<TOptions>(IConfiguration configuration, string sectionKey)
